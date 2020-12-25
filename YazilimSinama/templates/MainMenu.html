@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <title>ToDoApp</title>
+
+    <style>
+      ::-webkit-scrollbar {
+        width: 10px;
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: orange;
+      }
+
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        -moz-border-radius: 5px; // Mozilla için ovalleştirme
+        -webkit-border-radius: 5px; // chrome için ovalleştirme
+        border-radius: 5px; // İnternet Explorer için ovalleştirme
+      }
+
+      ::-webkit-scrollbar-thumb:active {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background: url('https://c.files.bbci.co.uk/F98B/production/_99838836_mario976.jpg')
+        center center fixed;
+      background-size: cover;
+    "
+  >
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Gitmek istediğiniz işi seçiniz : </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div
+            class="modal-body"
+            style="overflow-x: hidden; max-height: 200px; overflow-y: scroll"
+          >
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Kapat
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="jumbotron jumbotron-fluid"
+      style="background-color: rgba(255, 255, 255, 0.4)"
+    >
+      <div class="container">
+        <h1 class="display-4">ToDoApp</h1>
+        <p class="lead">
+          İş eklemek veya mevcut bir işe gitmek için aşağıdaki yönergeleri
+          uygulayınız...
+        </p>
+      </div>
+    </div>
+
+
+
+
+
+
+    {% comment %} burası boşluk {% endcomment %}
+
+    <div
+      class="modal fade"
+      id="exampleModalCenter1"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Güncellemek istediğiniz işi seçiniz:</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div
+            class="modal-body"
+            style="overflow-x: hidden; max-height: 200px; overflow-y: scroll"
+          >
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+            <button
+              type="button"
+              class="btn btn-success"
+              style="width: 100%; padding: 5px"
+            >
+              Deneme
+            </button>
+            <hr />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Kapat
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    {% comment %}
+    <div
+      class="container-fluid"
+      style="
+        background-color: rgba(64, 64, 118, 0.7);
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        width: 25%;
+        height: 35%;
+        top: 40%;
+        left: 10%;
+        position: fixed;
+      "
+    >
+      <ul style="list-style-type: none; float: left">
+        <li><h5 style="color: white">İş ekleme</h5></li>
+        <li>
+          <p style="color: white">
+            blablablablablablablalblablablalalbvblablalbalblablalblablalbalblalbalblablalbalblablalbalblabl
+          </p>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            Launch demo modal
+          </button>
+        </li>
+      </ul>
+    </div>
+    {% endcomment %}
+
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-sm"
+          style="
+            background-color: rgba(64, 64, 118, 0.5);
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            height: auto;
+          "
+        >
+          <h5 style="color: white; padding-left: 10px; padding-top: 10px">
+            Yeni bir iş eklemek için tıklayınız
+          </h5>
+          <hr />
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="float: right; float: bottom"
+          >
+            İş ekle
+          </button>
+        </div>
+        <div
+          class="col-sm"
+          style="
+            background-color: rgba(244, 164, 96, 0.7);
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+          "
+        >
+          <h5 style="color: white; padding-left: 10px; padding-top: 10px">
+            Önceki işlerden birine gitmek için tıklayınız
+          </h5>
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="float: right"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            To-Do sayfasına git.
+          </button>
+        </div>
+        <div
+          class="col-sm"
+          style="
+            background-color: rgba(255, 106, 106, 0.7);
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+          "
+        >
+          <h5 style="color: white; padding-left: 10px; padding-top: 10px">
+            Önceki işlerden birini güncellemek için tıklayınız
+          </h5>
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="float: right"
+            data-toggle="modal"
+            data-target="#exampleModalCenter1"
+          >
+            güncelleme sayfasına git.
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
