@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Uygulama import views
+from YazilimSinama.Uygulama import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.main)
+    path('',views.main),
+    path('uygulama',views.uygulama),
 ]
