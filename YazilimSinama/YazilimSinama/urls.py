@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from YazilimSinama.Uygulama import views
+from Uygulama import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.main),
     path('uygulama',views.uygulama),
+    path('isEkle',views.isEkle),
 ]

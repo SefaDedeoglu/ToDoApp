@@ -8,3 +8,6 @@ def main(request):
 def uygulama(request):
     Joblist1 = JobList.objects.all()
     return render(request,"index.html",{"JobList":Joblist1})
+
+def isEkle(request):
+    return render(request,"isEkle.html")
