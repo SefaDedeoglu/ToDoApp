@@ -2,9 +2,31 @@ from django.db import models
 
 # Create your models here.
 class JobList(models.Model):
-    title=models.CharField(max_length = 50,verbose_name ="Başlık")
-    ToDoCount = models.IntegerField(verbose_name="Durum")
-    text = models.CharField(max_length = 150, verbose_name="Yazı")
-    photo = models.CharField(max_length=200,verbose_name="Fotoğraf")
+    ProjeNo=models.CharField(max_length = 500,verbose_name ="Proje No",null=False, blank=True, default=00000)
+    TeknikUzman = models.CharField(max_length = 500, verbose_name="Teknik Uzman",null=False, blank=True, default=00000)
+    TahminiSure = models.CharField(max_length=500,verbose_name="Tahmini Süre",null=False, blank=True, default=00000)
+    GerceklesenSure=models.CharField(max_length=500,verbose_name="Gerçekleşen Süre",null=False, blank=True, default=00000)
+    Tarih = models.CharField(max_length=500,verbose_name="Tarih",null=False, blank=True, default=00000)
+    KartNo = models.CharField(max_length=500,verbose_name="Kart No",null=False, blank=True, default=00000)
+    IsAciklamasi = models.CharField(max_length=500,verbose_name="İş Açıklaması",null=False, blank=True, default=00000)
+    Notlar = models.CharField(max_length=500,verbose_name="Notlar",null=False, blank=True, default=00000)
     def __str__(self):
-        return self.title
+        return self.ProjeNo
+
+class Todos(models.Model):
+    TodosJob = models.ForeignKey(JobList,on_delete=models.CASCADE,verbose_name="Hangi iş?")
+    todoTarih = models.CharField(max_length=500,verbose_name="Tarih",null=False, blank=True, default=00000)
+    todoDurum = models.CharField(max_length=500,verbose_name="Durum",null=False, blank=True, default=00000)
+    todoYapilacakIs= models.CharField(max_length=500,verbose_name="Yapılacak İş",null=False, blank=True, default=00000)
+    todoAciklama = models.CharField(max_length=500,verbose_name="Açıklama",null=False, blank=True, default=00000)
+    t = models.CharField(max_length=2,verbose_name="t",null=False, blank=True, default=00000)
+    d = models.CharField(max_length=2,verbose_name="d",null=False, blank=True, default=00000)
+    y = models.CharField(max_length=2,verbose_name="y",null=False, blank=True, default=00000)
+    a = models.CharField(max_length=2,verbose_name="a",null=False, blank=True, default=00000)
+
+    def __str__(self):
+        return self.todoTarih
+
+
+        
+

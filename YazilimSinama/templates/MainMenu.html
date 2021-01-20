@@ -77,15 +77,20 @@
             class="modal-body"
             style="overflow-x: hidden; max-height: 200px; overflow-y: scroll"
           >
-            <button
-              onClick='location.href="uygulama"'
+          {% if JobList1 %}
+          {% for item in JobList1 %}
+              <button
+              onClick='location.href="uygulama/{{item.id}}"'
               type="button"
               class="btn btn-success"
               style="width: 100%; padding: 5px"
             >
-            uygulama
+            {{item.ProjeNo}}
             </button>
             <hr />
+          {% endfor %}
+          {% else %}
+          {% endif %}
         
           </div>
           <div class="modal-footer">
@@ -146,24 +151,21 @@
             class="modal-body"
             style="overflow-x: hidden; max-height: 200px; overflow-y: scroll"
           >
-            <button
-              onClick='location.href="uygulama"'
-              type="button"
-              class="btn btn-success"
-              style="width: 100%; padding: 5px"
-            >
-            uygulama
-            </button>
-            <hr />
+          {% if JobList1 %}
+          {% for item in JobList1 %}
               <button
-              onClick='location.href="uygulama"'
+              onClick='location.href="isGuncelle/{{item.id}}"'
               type="button"
               class="btn btn-success"
               style="width: 100%; padding: 5px"
             >
-            uygulama
+            {{item.ProjeNo}}
             </button>
             <hr />
+          {% endfor %}
+          {% else %}
+          {% endif %}
+
           </div>
           <div class="modal-footer">
             <button
@@ -231,6 +233,7 @@
             Yeni bir iş eklemek için tıklayınız
           </h5>
           <hr />
+
           <button
             onClick='location.href="isEkle"'
             type="button"

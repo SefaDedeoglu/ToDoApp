@@ -19,6 +19,12 @@ from Uygulama import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.main),
-    path('uygulama',views.uygulama),
+    path('uygulama/<int:id>',views.uygulama),
     path('isEkle',views.isEkle),
+    path('isEkleAction',views.isEkleAction),
+    path('isGuncelle/<int:id>',views.isDuzenle),
+    path('isGuncelleAction/<int:id>',views.isGuncelleAction),
+    path('todos/<int:id>',views.todos),
+    path('updatetodo/<int:id>',views.updatetodo),
+    path('deletetodo/<int:id>',views.deletetodo),
 ]

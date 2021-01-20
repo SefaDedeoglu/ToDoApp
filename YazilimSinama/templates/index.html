@@ -9,25 +9,26 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+
             var clicks1 = 0;
             var clicks2 = 0;
             var clicks3 = 0;
+function load(){
+{% if todos1 %}
 
-{% if JobList %}
+{% for item in todos1 %}
 
-{% for item in JobList %}
+  {% if item.todoDurum == "Eklendi" and item.TodosJob == Joblist1 %}
 
-  {% if item.ToDoCount == 1 %}
-  
   clicks1++;
 
-  {% elif item.ToDoCount == 2 %}
+  {% elif item.todoDurum == "Yapım Aşamasında" and item.TodosJob == Joblist1 %}
 
   clicks2++;
-  {% else %}
+  {% elif item.todoDurum == "Bitti" and item.TodosJob == Joblist1 %}
 
   clicks3++;
-
+{% else %}
   {% endif %}
 
 {% endfor %}
@@ -35,11 +36,17 @@
 {% else %}
 {% endif %}
 
+document.getElementById("clicks1").innerHTML = clicks1;
+document.getElementById("clicks2").innerHTML = clicks2;
+document.getElementById("clicks3").innerHTML = clicks3;
+}
 $(document).ready(function () {
 document.getElementById("clicks1").innerHTML = clicks1;
 document.getElementById("clicks2").innerHTML = clicks2;
 document.getElementById("clicks3").innerHTML = clicks3;
         });
+
+
 </script>
     <style>
       ::-webkit-scrollbar {
@@ -70,12 +77,14 @@ document.getElementById("clicks3").innerHTML = clicks3;
     </style>
   </head>
   <body
+  onload="load()"
     style="
       background: url('https://c.files.bbci.co.uk/F98B/production/_99838836_mario976.jpg')
         center center fixed;
       background-size: cover;
     "
   >
+  <button type="button" onClick="window.location.href='/'" class="btn btn-danger" data-bs-toggle="button" autocomplete="off">Ana Sayfa</button>
     <div style="position: absolute; top: 10px; left: 5%;">
       <button type="button" class="btn btn-primary" style="opacity: 1;" disabled>
         Yapılacaklar <span id="clicks1" class="badge badge-light">0</span>
@@ -98,38 +107,51 @@ document.getElementById("clicks3").innerHTML = clicks3;
     >
       <div class="col">
         <div class="list-group">       
-{% if JobList %}
-        {% for item in JobList  %}
-            {% if item.ToDoCount == 1 %}
-                        <div
+
+          {% if todos1 %}
+          
+            {% for item in todos1 %}
+            
+            {% if item.TodosJob == Joblist1 and item.todoDurum == "Eklendi" %}
+            
+            <div
             class="container-fluid"
             style="
-              background-color: rgba(178, 34, 34, 0.8);
-              max-witdth: 16%;
+              background-color: rgba(86,28,89, 0.8);
+              width: 100%;
+              height:auto;
+             word-wrap:break-word;
               -webkit-border-radius: 20px;
               -moz-border-radius: 20px;
               border-radius: 20px;
+              flex-direction: column;
+              display:flex;
+              padding:10px;
+              box-sizing:border-box;
             "
+            
             draggable="true"
           >
-            <ul style="list-style-type: none; padding: (5px 5px 5px 10px)">
-              <li><h5>{{item.title}}</h5></li>
-              <li><label for="formGroupExampleInput">{{item.text}}</label></li>
-              <li>
-                <img
-                  draggable="false"
-                  src="{{item.photo}}"
-                  class="img-thumbnail"
-                />
-              </li>
-            </ul>
+          <h5 style="margin-bottom:1rem;color:white;">{{item.todoTarih}}</h5>
+          <h5 style="margin-bottom:1rem;color:white;">{{item.todoYapilacakIs}}</h5>
+          <input type="text" style="visibility:hidden;height:2px;" name="itemid" value="{{item.id}}"/>
+          <input type="text" style="visibility:hidden;height:2px;" name="jobid" value="{{Joblist1.id}}"/>
+          <button style="margin-bottom:1rem;" onClick="window.location.href='/todos/{{item.id}}'" type="button" class="btn btn-info" >Görüntüle</button>
+          <button style="margin-bottom:1rem;" onClick="window.location.href='/todos/{{item.id}}'" type="button" class="btn btn-success" >Düzenle</button>
           </div>
           <hr />
-             {% else %}
-             {% endif %}
-        {% endfor %}
-{% else %}
-{% endif %}
+
+            {% else %}
+            {% endif %}
+
+            {% endfor %}
+
+          {% else %}
+          {% endif %}
+
+
+
+
 
 
 
@@ -175,38 +197,46 @@ document.getElementById("clicks3").innerHTML = clicks3;
     >
       <div class="col">
         <div class="list-group">
-{% if JobList %}
-        {% for item in JobList  %}
-            {% if item.ToDoCount == 2 %}
-                        <div
+{% if todos1 %}
+          
+            {% for item in todos1 %}
+            
+            {% if item.TodosJob == Joblist1 and item.todoDurum == "Yapım Aşamasında" %}
+            
+            <div
             class="container-fluid"
             style="
-              background-color: rgba(178, 34, 34, 0.8);
+              background-color: rgba(86,28,89, 0.8);
               max-witdth: 16%;
               -webkit-border-radius: 20px;
               -moz-border-radius: 20px;
               border-radius: 20px;
+              flex-direction: column;
+              display:flex;
+              padding:10px;
             "
+            
             draggable="true"
           >
-            <ul style="list-style-type: none; padding: (5px 5px 5px 10px)">
-              <li><h5>{{item.title}}</h5></li>
-              <li><label for="formGroupExampleInput">{{item.text}}</label></li>
-              <li>
-                <img
-                  draggable="false"
-                  src="{{item.photo}}"
-                  class="img-thumbnail"
-                />
-              </li>
-            </ul>
+          <h5 style="margin-bottom:1rem;color:white;">{{item.todoTarih}}</h5>
+          <h5 style="margin-bottom:1rem;color:white;">{{item.todoYapilacakIs}}</h5>
+          <button style="margin-bottom:1rem;" type="button" class="btn btn-info" >Görüntüle</button>
+          <button style="margin-bottom:1rem;" type="button" class="btn btn-success" >Düzenle</button>
+          <button style="margin-bottom:1rem;" type="button" class="btn btn-danger" >Sİl</button>
           </div>
-          <hr />
-             {% else %}
-             {% endif %}
-        {% endfor %}
-{% else %}
-{% endif %}
+          <hr /> 
+
+            {% else %}
+            {% endif %}
+
+            {% endfor %}
+
+          {% else %}
+          {% endif %}
+
+            
+
+
 
 
 
@@ -237,7 +267,7 @@ document.getElementById("clicks3").innerHTML = clicks3;
 
     <div
       style="
-        background-color: rgba(173, 255, 47, 0.5);
+        background-color: rgba(250,250,250, 0.5);
         width: 25%;
         height: 85%;
         top: 60px;
@@ -251,39 +281,44 @@ document.getElementById("clicks3").innerHTML = clicks3;
     >
       <div class="col">
         <div class="list-group">
-
-{% if JobList %}
-        {% for item in JobList  %}
-            {% if item.ToDoCount == 3 %}
-                        <div
+                  {% if todos1 %}
+          
+            {% for item in todos1 %}
+            
+            {% if item.TodosJob == Joblist1 and item.todoDurum == "Bitti" %}
+            
+           <div
             class="container-fluid"
             style="
-              background-color: rgba(178, 34, 34, 0.8);
+              background-color: rgba(86,28,89, 0.8);
               max-witdth: 16%;
               -webkit-border-radius: 20px;
               -moz-border-radius: 20px;
               border-radius: 20px;
+              flex-direction: column;
+              display:flex;
+              padding:10px;
             "
+            
             draggable="true"
           >
-            <ul style="list-style-type: none; padding: (5px 5px 5px 10px)">
-              <li><h5>{{item.title}}</h5></li>
-              <li><label for="formGroupExampleInput">{{item.text}}</label></li>
-              <li>
-                <img
-                  draggable="false"
-                  src="{{item.photo}}"
-                  class="img-thumbnail"
-                />
-              </li>
-            </ul>
+          <h5 style="margin-bottom:1rem;color:white;">{{item.todoTarih}}</h5>
+          <h5 style="margin-bottom:1rem;color:white;">{{item.todoYapilacakIs}}</h5>
+          <button style="margin-bottom:1rem;" type="button" class="btn btn-info" >Görüntüle</button>
+          <button style="margin-bottom:1rem;" type="button" class="btn btn-success" >Düzenle</button>
+          <button style="margin-bottom:1rem;" type="button" class="btn btn-danger" >Sİl</button>
           </div>
           <hr />
-             {% else %}
-             {% endif %}
-        {% endfor %}
-{% else %}
-{% endif %}
+
+            {% else %}
+            {% endif %}
+
+            {% endfor %}
+
+          {% else %}
+          {% endif %}
+
+
 
 
         </div>
@@ -292,14 +327,14 @@ document.getElementById("clicks3").innerHTML = clicks3;
 
     <div
       style="
-        background-color: rgba(197, 175, 56, 0.8);
+        background-color: rgba(250,250,250, 0.5);
         position: absolute;
         top: 93%;
         width: 18%;
         left: 70%;
       "
     >
-      <p style="color: white; float: left; font-weight: bold">
+      <p style="color: black; float: left; font-weight: bold">
         Öğe eklemek için + işaretine tıklayınız
       </p>
       <button type="button" style="float: right" class="btn btn-info">+</button>
