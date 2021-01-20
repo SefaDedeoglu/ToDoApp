@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Uygulama import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.main),
@@ -27,4 +28,7 @@ urlpatterns = [
     path('todos/<int:id>',views.todos),
     path('updatetodo/<int:id>',views.updatetodo),
     path('deletetodo/<int:id>',views.deletetodo),
+    path('todoEkle/<int:durum>/<int:id>',views.todoEkle),
+    path('eklendi/<int:id>',views.eklendi),
+    path('todoGoruntule/<int:id>',views.todoGoruntule),
 ]

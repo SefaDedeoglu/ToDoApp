@@ -11,11 +11,10 @@
     <title>Todo</title>
 
   </head>
-  <button type="button" onClick="window.location.href='/uygulama/{{id}}'" class="btn btn-info" style="margin-top:1rem;">geri dön</button>
   <body style="background-color: rgba(86,28,89, 0.8);">
   <div style="box-sizing:border-box;">
   <div style="flex-direction:column;display:flex;width:70%;padding-left:25%;padding-top:15%;">
-  <form action="/updatetodo/{{todo.id}}" method="post">
+  <form action="/eklendi/{{id}}" method="post">
   {% csrf_token %}
     <div class="row" style="margin-top:1rem;"><div class="col" style="text-align:center;"><h2>Todo Ekleme</h2></div></div>
      <div class="row" style="margin-top:1rem;">
@@ -31,7 +30,7 @@
             />
     </div>
     <div class="col">
-      <input type="date" value="{{todo.todoTarih}}" class="form-control" aria-label="Small" placeholder="Tarih" aria-describedby="inputGroup-sizing-sm" name = "t" />
+      <input type="date"  class="form-control" aria-label="Small" placeholder="Tarih" aria-describedby="inputGroup-sizing-sm" name = "t" />
     </div>
   </div>
 
@@ -49,18 +48,12 @@
     </div>
     <div class="col">
       	<select class="form-control" aria-describedby="inputGroup-sizing-sm" name = "d">
-          {% if todo.todoDurum == "Eklendi" %}
+          {% if durum == 1 %}
 
             <option selected>Eklendi</option>
-            <option >Yapım Aşamasında</option>
-            <option >Bitti</option>
-            {% elif todo.todoDurum == "Yapım Aşamasında" %}
-            <option >Eklendi</option>
+            {% elif durum == 2 %}
             <option selected>Yapım Aşamasında</option>
-            <option >Bitti</option>
             {% else %}
-            <option >Eklendi</option>
-            <option >Yapım Aşamasında</option>
             <option selected>Bitti</option>
             {% endif %}
           </select> 
@@ -81,7 +74,7 @@
             />
     </div>
     <div class="col">
-     	<input type="text" value="{{todo.todoYapilacakIs}}" class="form-control" aria-label="Small" placeholder="Yapılacak iş" aria-describedby="inputGroup-sizing-sm" name = "y" /> 
+     	<input type="text"  class="form-control" aria-label="Small" placeholder="Yapılacak iş" aria-describedby="inputGroup-sizing-sm" name = "y" /> 
 
     </div>
   </div>
@@ -99,18 +92,13 @@
             />
     </div>
     <div class="col">
-     	<input type="text" value="{{todo.todoAciklama}}" class="form-control" aria-label="Small" placeholder="Açıklama" aria-describedby="inputGroup-sizing-sm" name = "a" />
+     	<input type="text"  class="form-control" aria-label="Small" placeholder="Açıklama" aria-describedby="inputGroup-sizing-sm" name = "a" />
 
     </div>
   </div>
-      <div class="row" style="margin-top:1rem;">
-    <div class="col">
-<button type="button" onClick="window.location.href='/deletetodo/{{todo.id}}'" class="btn btn-danger" style="margin-top:1rem;">sil</button>
-    </div>
-    <div class="col">
-     	<button type="submit" class="btn btn-success" style="margin-top:1rem;">güncelle</button>
-    </div>
-  </div>
+
+     	<button type="submit" class="btn btn-success" style="margin-top:1rem;">To-Do ekle</button>
+
 
 </form>
   </div>

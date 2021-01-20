@@ -19,10 +19,7 @@ class Todos(models.Model):
     todoDurum = models.CharField(max_length=500,verbose_name="Durum",null=False, blank=True, default=00000)
     todoYapilacakIs= models.CharField(max_length=500,verbose_name="Yapılacak İş",null=False, blank=True, default=00000)
     todoAciklama = models.CharField(max_length=500,verbose_name="Açıklama",null=False, blank=True, default=00000)
-    t = models.CharField(max_length=2,verbose_name="t",null=False, blank=True, default=00000)
-    d = models.CharField(max_length=2,verbose_name="d",null=False, blank=True, default=00000)
-    y = models.CharField(max_length=2,verbose_name="y",null=False, blank=True, default=00000)
-    a = models.CharField(max_length=2,verbose_name="a",null=False, blank=True, default=00000)
+
 
     def __str__(self):
         return self.todoTarih

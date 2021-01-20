@@ -136,7 +136,7 @@ document.getElementById("clicks3").innerHTML = clicks3;
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoYapilacakIs}}</h5>
           <input type="text" style="visibility:hidden;height:2px;" name="itemid" value="{{item.id}}"/>
           <input type="text" style="visibility:hidden;height:2px;" name="jobid" value="{{Joblist1.id}}"/>
-          <button style="margin-bottom:1rem;" onClick="window.location.href='/todos/{{item.id}}'" type="button" class="btn btn-info" >Görüntüle</button>
+          <button style="margin-bottom:1rem;" onClick="window.location.href='/todoGoruntule/{{item.id}}'" type="button" class="btn btn-info" >Görüntüle</button>
           <button style="margin-bottom:1rem;" onClick="window.location.href='/todos/{{item.id}}'" type="button" class="btn btn-success" >Düzenle</button>
           </div>
           <hr />
@@ -172,7 +172,7 @@ document.getElementById("clicks3").innerHTML = clicks3;
       <p style="color: white; float: left; font-weight: bold">
         Öğe eklemek için + işaretine tıklayınız
       </p>
-      <button type="button" style="float: right" class="btn btn-info">+</button>
+      <button type="button" onClick="window.location.href='/todoEkle/1/{{Joblist1.id}}'" style="float: right" class="btn btn-info">+</button>
     </div>
 
     <div style="position: absolute; top: 10px; left: 39%">
@@ -203,28 +203,32 @@ document.getElementById("clicks3").innerHTML = clicks3;
             
             {% if item.TodosJob == Joblist1 and item.todoDurum == "Yapım Aşamasında" %}
             
-            <div
+                        <div
             class="container-fluid"
             style="
               background-color: rgba(86,28,89, 0.8);
-              max-witdth: 16%;
+              width: 100%;
+              height:auto;
+             word-wrap:break-word;
               -webkit-border-radius: 20px;
               -moz-border-radius: 20px;
               border-radius: 20px;
               flex-direction: column;
               display:flex;
               padding:10px;
+              box-sizing:border-box;
             "
             
             draggable="true"
           >
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoTarih}}</h5>
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoYapilacakIs}}</h5>
-          <button style="margin-bottom:1rem;" type="button" class="btn btn-info" >Görüntüle</button>
-          <button style="margin-bottom:1rem;" type="button" class="btn btn-success" >Düzenle</button>
-          <button style="margin-bottom:1rem;" type="button" class="btn btn-danger" >Sİl</button>
+          <input type="text" style="visibility:hidden;height:2px;" name="itemid" value="{{item.id}}"/>
+          <input type="text" style="visibility:hidden;height:2px;" name="jobid" value="{{Joblist1.id}}"/>
+          <button style="margin-bottom:1rem;" onClick="window.location.href='/todoGoruntule/{{item.id}}'" type="button" class="btn btn-info" >Görüntüle</button>
+          <button style="margin-bottom:1rem;" onClick="window.location.href='/todos/{{item.id}}'" type="button" class="btn btn-success" >Düzenle</button>
           </div>
-          <hr /> 
+          <hr />
 
             {% else %}
             {% endif %}
@@ -256,7 +260,7 @@ document.getElementById("clicks3").innerHTML = clicks3;
       <p style="color: white; float: left; font-weight: bold">
         Öğe eklemek için + işaretine tıklayınız
       </p>
-      <button type="button" style="float: right" class="btn btn-info">+</button>
+      <button type="button" onClick="window.location.href='/todoEkle/2/{{Joblist1.id}}'" style="float: right" class="btn btn-info">+</button>
     </div>
 
     <div style="position: absolute; top: 10px; left: 70%">
@@ -287,26 +291,30 @@ document.getElementById("clicks3").innerHTML = clicks3;
             
             {% if item.TodosJob == Joblist1 and item.todoDurum == "Bitti" %}
             
-           <div
+                      <div
             class="container-fluid"
             style="
               background-color: rgba(86,28,89, 0.8);
-              max-witdth: 16%;
+              width: 100%;
+              height:auto;
+             word-wrap:break-word;
               -webkit-border-radius: 20px;
               -moz-border-radius: 20px;
               border-radius: 20px;
               flex-direction: column;
               display:flex;
               padding:10px;
+              box-sizing:border-box;
             "
             
             draggable="true"
           >
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoTarih}}</h5>
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoYapilacakIs}}</h5>
-          <button style="margin-bottom:1rem;" type="button" class="btn btn-info" >Görüntüle</button>
-          <button style="margin-bottom:1rem;" type="button" class="btn btn-success" >Düzenle</button>
-          <button style="margin-bottom:1rem;" type="button" class="btn btn-danger" >Sİl</button>
+          <input type="text" style="visibility:hidden;height:2px;" name="itemid" value="{{item.id}}"/>
+          <input type="text" style="visibility:hidden;height:2px;" name="jobid" value="{{Joblist1.id}}"/>
+          <button style="margin-bottom:1rem;" onClick="window.location.href='/todoGoruntule/{{item.id}}'" type="button" class="btn btn-info" >Görüntüle</button>
+          <button style="margin-bottom:1rem;" onClick="window.location.href='/todos/{{item.id}}'" type="button" class="btn btn-success" >Düzenle</button>
           </div>
           <hr />
 
@@ -337,7 +345,7 @@ document.getElementById("clicks3").innerHTML = clicks3;
       <p style="color: black; float: left; font-weight: bold">
         Öğe eklemek için + işaretine tıklayınız
       </p>
-      <button type="button" style="float: right" class="btn btn-info">+</button>
+      <button type="button" onClick="window.location.href='/todoEkle/3/{{Joblist1.id}}'" style="float: right" class="btn btn-info">+</button>
     </div>
 
     <script

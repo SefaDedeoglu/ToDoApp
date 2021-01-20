@@ -1,6 +1,7 @@
-from django.shortcuts import HttpResponse, render,redirect,get_object_or_404
+from django.shortcuts import HttpResponse, render,redirect,get_object_or_404,HttpResponseRedirect
 from .models import JobList
 from .models import Todos
+from django.urls import reverse
 
 
 # Create your views here.
@@ -11,7 +12,12 @@ def main(request):
 def uygulama(request,id):
     Joblist1 = get_object_or_404(JobList,id=id)
     todos1 = Todos.objects.all()
-    return render(request,"index.html",{"Joblist1":Joblist1,"todos1":todos1})
+    if request.method == "POST":
+        pass
+    else:
+        return render(request,"index.html",{"Joblist1":Joblist1,"todos1":todos1})
+
+    
 
 def isEkle(request):
     if(request.method=="GET"):
@@ -45,7 +51,7 @@ def isEkleAction(request):
             TodoAciklama = request.POST.get(""+aa+"")
             TodoJob = newjob
             
-            Todo = Todos(TodosJob=TodoJob,todoTarih=TodoTarih,todoDurum=TodoDurum,todoYapilacakIs=TodoYapilacakis,todoAciklama=TodoAciklama,t=ta,d=da,y=ya,a=aa)
+            Todo = Todos(TodosJob=TodoJob,todoTarih=TodoTarih,todoDurum=TodoDurum,todoYapilacakIs=TodoYapilacakis,todoAciklama=TodoAciklama)
             Todo.save()
 
         return redirect("/")
@@ -97,7 +103,26 @@ def isGuncelleAction(request,id):
     
 def todos(request,id):
     todo = get_object_or_404(Todos,id=id)
-    return render(request,"todos.html",{"todo":todo})
+    a = JobList.objects.all()
+    id = 1
+    for item in a :
+        if item == todo.TodosJob:
+            id=item.id
+            break
+    return render(request,"todos.html",{"todo":todo,"id":id})
+def todoEkle(request,durum,id):
+    return render(request,"todoEkle.html",{"durum":durum,"id":id})
+    
+def eklendi(request,id):
+    tarih = request.POST.get("t")
+    durum = request.POST.get("d")
+    yapilacak = request.POST.get("y")
+    aciklama = request.POST.get("a")
+    job = get_object_or_404(JobList,id=id)
+    todo = Todos(TodosJob=job,todoTarih=tarih,todoDurum=durum,todoYapilacakIs=yapilacak,todoAciklama=aciklama)
+    todo.save()
+    
+    return HttpResponseRedirect(reverse(uygulama, args=(id,)))
 def updatetodo(request,id):
     todo = get_object_or_404(Todos,id=id)
     tarih = request.POST.get("t")
@@ -107,19 +132,34 @@ def updatetodo(request,id):
     todo.todoTarih=tarih
     todo.todoDurum=durum
     todo.todoYapilacakIs=yapilacak
-    todo.Aciklama=aciklama
+    todo.todoAciklama=aciklama
     todo.save()
-    job = get_object_or_404(JobList,JobList=todo.TodosJob)
-    
-    return redirect("Uygulama/"+str(job.id))
+    a = JobList.objects.all()
+    id = 1
+    for item in a :
+        if item == todo.TodosJob:
+            id=item.id
+            break
+    return HttpResponseRedirect(reverse(uygulama, args=(id,)))
+
 def deletetodo(request,id):
     todo = get_object_or_404(Todos,id=id)
     a = JobList.objects.all()
-    id = ""
+    id = 1
     for item in a :
         if item == todo.TodosJob:
             id=item.id
             break
     todo.delete()
-    id=int(id)
-    return redirect("/Uygulama/{id}")
+    return HttpResponseRedirect(reverse(uygulama, args=(id,)))
+
+def todoGoruntule(request,id):
+    todo = get_object_or_404(Todos,id=id)
+    a = JobList.objects.all()
+    id = 1
+    for item in a :
+        if item == todo.TodosJob:
+            id=item.id
+            break
+    return render(request,"todoGoruntule.html",{"todo":todo,"id":id})
+
