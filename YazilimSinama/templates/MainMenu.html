@@ -44,6 +44,12 @@
         background-color: red;
       }
     </style>
+    <script>
+      jQuery(document).ready(function( $ ) {
+  $('.video-selector iframe')[0].contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+});
+    </script>
+    
   </head>
   <body
     style="
@@ -52,6 +58,12 @@
       background-size: cover;
     "
   >
+ 
+
+
+
+
+
     <div
       class="modal fade"
       id="exampleModalCenter"
@@ -235,9 +247,7 @@
             type="button"
             class="btn btn-primary"
             style="float: right; float: bottom"
-          >
-            İş ekle
-          </button>
+          >İş ekle</button>
         </div>
         <div
           class="col-sm"

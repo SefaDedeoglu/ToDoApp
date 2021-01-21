@@ -84,10 +84,32 @@ def isGuncelleAction(request,id):
     nesne.IsAciklamasi = request.POST.get("isAciklamasi")
     nesne.Notlar = request.POST.get("notlar")
     nesne.save()
+    sayac=0
+    items = Todos.objects.all()
+    for item in items:
+        if item.TodosJob == nesne:
+            sayac+=1
 
     int1 = request.POST.get("sayac")
     todoCount = int(int1)
-    for i in range(0,todoCount):
+    
+    for i in range(0,sayac):
+        ta= "t"+str(i+1)
+        da= "d"+str(i+1)
+        ya = "y"+str(i+1)
+        aa = "a"+str(i+1)
+        id1 = "id"+str(i+1)
+        getid = request.POST.get(""+id1+"")
+        Todo = get_object_or_404(Todos,id=getid)
+        Todo.TodosJob=nesne
+        Todo.todoTarih=request.POST.get(""+ta+"")
+        Todo.todoDurum =request.POST.get(""+da+"")
+        Todo.todoYapilacakIs = request.POST.get(""+ya+"")
+        Todo.todoAciklama = request.POST.get(""+aa+"")
+        Todo.save()
+
+
+    for i in range(sayac,todoCount):
         ta= "t"+str(i+1)
         da= "d"+str(i+1)
         ya = "y"+str(i+1)
@@ -97,7 +119,7 @@ def isGuncelleAction(request,id):
         TodoYapilacakis =request.POST.get(""+ya+"")
         TodoAciklama = request.POST.get(""+aa+"")
         TodoJob = nesne
-        Todo = Todos(TodosJob=TodoJob,todoTarih=TodoTarih,todoDurum=TodoDurum,todoYapilacakIs=TodoYapilacakis,todoAciklama=TodoAciklama,t=ta,d=da,y=ya,a=aa)
+        Todo = Todos(TodosJob=TodoJob,todoTarih=TodoTarih,todoDurum=TodoDurum,todoYapilacakIs=TodoYapilacakis,todoAciklama=TodoAciklama)
         Todo.save()
     return redirect("/")
     
@@ -162,4 +184,27 @@ def todoGoruntule(request,id):
             id=item.id
             break
     return render(request,"todoGoruntule.html",{"todo":todo,"id":id})
+
+def dragdrop(request,durum,id):
+    todo = get_object_or_404(Todos,id=id)
+    a = JobList.objects.all()
+    id = 1
+    for item in a :
+        if item == todo.TodosJob:
+            id=item.id
+            break
+    if durum ==1:
+        todo.todoDurum="Eklendi"
+        todo.save()
+    elif durum==2:
+        todo.todoDurum="Yapım Aşamasında"
+        todo.save()
+    elif durum==3:
+        todo.todoDurum = "Bitti"
+        todo.save()
+    elif durum==4:
+        todo.delete()
+    else :
+        pass
+    return HttpResponseRedirect(reverse(uygulama, args=(id,)))
 

@@ -20,13 +20,60 @@
     <script type="text/javascript">
     var sayac= 0;
     
+    function onloaddata(){
+      {% if Todos1 %}
+        
+        {% for item in Todos1 %}
+        {% if item.TodosJob == nesne %}
+        
+            {% if item.todoDurum == "Eklendi" %}
+            sayac++;
+            
+            var a = document.getElementById("k2");
+    a.insertAdjacentHTML("afterend",'<input type="hidden" name="id'+sayac+'" value="{{item.id}}"  /><div id="k1" style="display:flex;justify-content:space-between"><input type="date" class="form-control" aria-label="Small" placeholder="Tarih" value="{{item.todoTarih}}"" aria-describedby="inputGroup-sizing-sm" name = "t'+sayac+'" /><select class="form-control" aria-describedby="inputGroup-sizing-sm" name = "d'+sayac+'"><option selected>Eklendi</option><option >Yapım Aşamasında</option><option >Bitti</option></select><input type="text" class="form-control" aria-label="Small" placeholder="Yapılacak iş" value="{{item.todoYapilacakIs}}" aria-describedby="inputGroup-sizing-sm" name = "y'+sayac+'"/><input type="text" class="form-control" aria-label="Small" placeholder="Açıklama" value="{{item.todoAciklama}}" aria-describedby="inputGroup-sizing-sm" name = "a'+sayac+'"/></div>');
+    document.getElementById("sayac").innerHTML=sayac;
+    
+            {% elif item.todoDurum == "Yapım Aşamasında" %}
+            sayac++;
+            
+            var a = document.getElementById("k2");
+    a.insertAdjacentHTML("afterend",'<input type="hidden" name="id'+sayac+'" value="{{item.id}}"  /><div id="k1" style="display:flex;justify-content:space-between"><input type="date" class="form-control" aria-label="Small" placeholder="Tarih" value="{{item.todoTarih}}"" aria-describedby="inputGroup-sizing-sm" name = "t'+sayac+'" /><select class="form-control" aria-describedby="inputGroup-sizing-sm" name = "d'+sayac+'"><option >Eklendi</option><option selected>Yapım Aşamasında</option><option >Bitti</option></select><input type="text" class="form-control" aria-label="Small" placeholder="Yapılacak iş" value="{{item.todoYapilacakIs}}" aria-describedby="inputGroup-sizing-sm" name = "y'+sayac+'"/><input type="text" class="form-control" aria-label="Small" placeholder="Açıklama" value="{{item.todoAciklama}}" aria-describedby="inputGroup-sizing-sm" name = "a'+sayac+'"/></div>');
+    document.getElementById("sayac").innerHTML=sayac;
+   
+            {% else %}
+            sayac++;
+            
+            var a = document.getElementById("k2");
+    a.insertAdjacentHTML("afterend",'<input type="hidden" name="id'+sayac+'" value="{{item.id}}"  /><div id="k1" style="display:flex;justify-content:space-between"><input type="date" class="form-control" aria-label="Small" placeholder="Tarih" value="{{item.todoTarih}}"" aria-describedby="inputGroup-sizing-sm" name = "t'+sayac+'" /><select class="form-control" aria-describedby="inputGroup-sizing-sm" name = "d'+sayac+'"><option >Eklendi</option><option >Yapım Aşamasında</option><option selected>Bitti</option></select><input type="text" class="form-control" aria-label="Small" placeholder="Yapılacak iş" value="{{item.todoYapilacakIs}}" aria-describedby="inputGroup-sizing-sm" name = "y'+sayac+'"/><input type="text" class="form-control" aria-label="Small" placeholder="Açıklama" value="{{item.todoAciklama}}" aria-describedby="inputGroup-sizing-sm" name = "a'+sayac+'"/></div>');
+    document.getElementById("sayac").innerHTML=sayac;
+    
+            {% endif %}
+            
+            
+            
+           
+        {% else %}
+        {% endif %}
+              
+
+
+             
+
+
+        {% endfor %}
+
+        {% else %}
+        {% endif %}
+    
+    
+    }
+    
     function fonk(){
     sayac++;
     var a = document.getElementById("k2");
-    a.insertAdjacentHTML("afterend",'<div id="k1" style="display:flex;justify-content:space-between"> <input type="date" class="form-control" aria-label="Small" placeholder="Tarih" aria-describedby="inputGroup-sizing-sm" name = "t'+sayac+'" /> <select class="form-control" aria-describedby="inputGroup-sizing-sm" name = "d'+sayac+'"><option selected>Eklendi</option><option>Yapım Aşamasında</option><option>Bitti</option></select> <input type="text" class="form-control" aria-label="Small" placeholder="Yapılacak iş" aria-describedby="inputGroup-sizing-sm" name = "y'+sayac+'" /> <input type="text" class="form-control" aria-label="Small" placeholder="Açıklama" aria-describedby="inputGroup-sizing-sm" name = "a'+sayac+'" /></div>');
-     document.getElementById("sayac").innerHTML=sayac;
+    a.insertAdjacentHTML("afterend",'<div  style="display:flex;justify-content:space-between"> <input type="date" class="form-control" aria-label="Small" placeholder="Tarih" aria-describedby="inputGroup-sizing-sm" name = "t'+sayac+'" /> <select class="form-control" aria-describedby="inputGroup-sizing-sm" name = "d'+sayac+'"><option selected>Eklendi</option><option>Yapım Aşamasında</option><option>Bitti</option></select> <input type="text" class="form-control" aria-label="Small" placeholder="Yapılacak iş" aria-describedby="inputGroup-sizing-sm" name = "y'+sayac+'" /> <input type="text" class="form-control" aria-label="Small" placeholder="Açıklama" aria-describedby="inputGroup-sizing-sm" name = "a'+sayac+'" /></div>');
+    document.getElementById("sayac").innerHTML=sayac;
       
-    console.log(sayac);
 
 
 
@@ -35,12 +82,14 @@
     </script>
   </head>
   <body
+    onload="onloaddata()"
     style="
       background: url('https://c.files.bbci.co.uk/F98B/production/_99838836_mario976.jpg')
         center center fixed;
       background-size: cover;
     "
   >
+  <button type="button" onClick="window.location.href='/'" class="btn btn-danger" data-bs-toggle="button" autocomplete="off">Ana Sayfa</button>
   <form method="post" action="/isGuncelleAction/{{nesne.id}}">
   {% csrf_token %}
     <div
@@ -315,75 +364,10 @@
             />
             
             </div>
-        {% if Todos1 %}
-        
-        {% for item in Todos1 %}
-        {% if item.TodosJob == nesne %}
-        <div id="k1" style="display:flex;justify-content:space-between">
-              <input
-              type="date"
-              class="form-control"
-              aria-label="Small"
-              placeholder="Tarih"
-              value="{{item.todoTarih}}""
-              aria-describedby="inputGroup-sizing-sm"
-              name = "{{item.t}}"
-            />
-            <select class="form-control" aria-describedby="inputGroup-sizing-sm"
-              name = "{{item.d}}">
-            {% if item.todoDurum == "Eklendi" %}
-           <option selected>Eklendi</option>
-            <option >Yapım Aşamasında</option>
-            <option >Bitti</option>
-            {% elif item.todoDurum == "Yapım Aşamasında" %}
-            <option >Eklendi</option>
-            <option selected>Yapım Aşamasında</option>
-            <option >Bitti</option>
-            {% else %}
-            <option >Eklendi</option>
-            <option >Yapım Aşamasında</option>
-            <option selected>Bitti</option>
-            {% endif %}
-            
-            
-            
-            </select>
-
-              <input
-              type="text"
-              class="form-control"
-              aria-label="Small"
-              placeholder="Yapılacak iş"
-              value="{{item.todoYapilacakIs}}"
-              aria-describedby="inputGroup-sizing-sm"
-              name = "{{item.y}}"
-            />
-             <input
-              type="text"
-              class="form-control"
-              aria-label="Small"
-              placeholder="Açıklama"
-              value="{{item.todoAciklama}}"
-              aria-describedby="inputGroup-sizing-sm"
-              name = "{{item.a}}"
-            />
-            </div>
-        {% else %}
-        {% endif %}
-              
-
-
-             
-
-
-        {% endfor %}
-
-        {% else %}
-        {% endif %} 
+         
        <textarea style="visibility:hidden;" name="sayac" id="sayac">0</textarea>
            
             <button type="button" onClick="fonk()" class="btn btn-secondary"  >Daha fazla ekle...</button>
-        <textarea style="visibility:hidden;" name="sayac2" >{{i}}</textarea>
       </div>
 
           <div

@@ -31,4 +31,5 @@ urlpatterns = [
     path('todoEkle/<int:durum>/<int:id>',views.todoEkle),
     path('eklendi/<int:id>',views.eklendi),
     path('todoGoruntule/<int:id>',views.todoGoruntule),
+    path('dragdrop/<int:durum>/<int:id>',views.dragdrop),
 ]

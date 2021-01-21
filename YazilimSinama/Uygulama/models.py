@@ -11,7 +11,7 @@ class JobList(models.Model):
     IsAciklamasi = models.CharField(max_length=500,verbose_name="İş Açıklaması",null=False, blank=True, default=00000)
     Notlar = models.CharField(max_length=500,verbose_name="Notlar",null=False, blank=True, default=00000)
     def __str__(self):
-        return self.ProjeNo
+         return "id: {} || Proje Adı/No {}".format(self.id,self.ProjeNo)
 
 class Todos(models.Model):
     TodosJob = models.ForeignKey(JobList,on_delete=models.CASCADE,verbose_name="Hangi iş?")
@@ -22,8 +22,8 @@ class Todos(models.Model):
 
 
     def __str__(self):
-        return self.todoTarih
-
+        
+        return "id: {} || Tarih {}".format(self.id,self.todoTarih)
 
         
 

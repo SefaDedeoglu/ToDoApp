@@ -41,6 +41,7 @@
       background-size: cover;
     "
   >
+  <button type="button" onClick="window.location.href='/'" class="btn btn-danger" data-bs-toggle="button" autocomplete="off">Ana Sayfa</button>
   <form method="post" action="isEkleAction">
   {% csrf_token %}
     <div
@@ -313,7 +314,7 @@
             
             </div>
 
-
+            
             <textarea style="visibility:hidden;" name="sayac" id="sayac">0</textarea>
             
            

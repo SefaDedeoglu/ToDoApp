@@ -9,6 +9,30 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+  var elem = document.getElementById('4');
+  elem.style.visibility="visible"
+}
+
+function drop(ev) {
+  ev.preventDefault();
+
+  var data = ev.dataTransfer.getData("text");
+  targetId = ev.target.id;
+  var elem = document.getElementById('4');
+  elem.style.visibility="hidden"
+  if(targetId==1||targetId==2||targetId==3||targetId==4){
+  if(targetId!=4){
+  ev.target.appendChild(document.getElementById(data));
+  }
+  window.location.href = "/dragdrop/"+targetId+"/"+data;
+  }
+}
 
             var clicks1 = 0;
             var clicks2 = 0;
@@ -84,6 +108,27 @@ document.getElementById("clicks3").innerHTML = clicks3;
       background-size: cover;
     "
   >
+  <div
+  id="4"
+  style="
+    background-color: rgba(221, 0, 0, 0.7);
+    position: absolute;
+    top: 100px;
+    width: 80px;
+    height:100px;
+    left: 0;
+    display:flex;
+    justify-content:space-around;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 5px solid #000000;
+    visibility:hidden;
+  "
+  ondrop="drop(event)" ondragover="allowDrop(event)"
+>
+<h5>SİL</h5>
+</div>
   <button type="button" onClick="window.location.href='/'" class="btn btn-danger" data-bs-toggle="button" autocomplete="off">Ana Sayfa</button>
     <div style="position: absolute; top: 10px; left: 5%;">
       <button type="button" class="btn btn-primary" style="opacity: 1;" disabled>
@@ -105,17 +150,22 @@ document.getElementById("clicks3").innerHTML = clicks3;
         left: 5%;
       "
     >
-      <div class="col">
-        <div class="list-group">       
+      <div class="col" style="height:100%;width: 100%;">
+        <div class="list-group" style="height:100%;width: 100%;" id="1" ondrop="drop(event)" ondragover="allowDrop(event)">       
 
           {% if todos1 %}
           
             {% for item in todos1 %}
             
             {% if item.TodosJob == Joblist1 and item.todoDurum == "Eklendi" %}
-            
+            <div  id="{{item.id}}"
+            ondragstart="drag(event)"
+            draggable="true"
+            style="margin-bottom: 1.8rem;"
+            >
             <div
             class="container-fluid"
+            
             style="
               background-color: rgba(86,28,89, 0.8);
               width: 100%;
@@ -130,7 +180,6 @@ document.getElementById("clicks3").innerHTML = clicks3;
               box-sizing:border-box;
             "
             
-            draggable="true"
           >
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoTarih}}</h5>
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoYapilacakIs}}</h5>
@@ -139,8 +188,8 @@ document.getElementById("clicks3").innerHTML = clicks3;
           <button style="margin-bottom:1rem;" onClick="window.location.href='/todoGoruntule/{{item.id}}'" type="button" class="btn btn-info" >Görüntüle</button>
           <button style="margin-bottom:1rem;" onClick="window.location.href='/todos/{{item.id}}'" type="button" class="btn btn-success" >Düzenle</button>
           </div>
-          <hr />
-
+         
+        </div>
             {% else %}
             {% endif %}
 
@@ -195,16 +244,22 @@ document.getElementById("clicks3").innerHTML = clicks3;
         left: 39%;
       "
     >
-      <div class="col">
-        <div class="list-group">
+      <div class="col" style="height:100%;">
+        <div class="list-group" id="2" style="height:100%;" ondrop="drop(event)" ondragover="allowDrop(event)">
 {% if todos1 %}
           
             {% for item in todos1 %}
             
             {% if item.TodosJob == Joblist1 and item.todoDurum == "Yapım Aşamasında" %}
             
-                        <div
+            <div  id="{{item.id}}"
+            ondragstart="drag(event)"
+            draggable="true"
+            style="margin-bottom: 1.8rem;"
+            >
+            <div
             class="container-fluid"
+            
             style="
               background-color: rgba(86,28,89, 0.8);
               width: 100%;
@@ -219,7 +274,6 @@ document.getElementById("clicks3").innerHTML = clicks3;
               box-sizing:border-box;
             "
             
-            draggable="true"
           >
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoTarih}}</h5>
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoYapilacakIs}}</h5>
@@ -228,7 +282,8 @@ document.getElementById("clicks3").innerHTML = clicks3;
           <button style="margin-bottom:1rem;" onClick="window.location.href='/todoGoruntule/{{item.id}}'" type="button" class="btn btn-info" >Görüntüle</button>
           <button style="margin-bottom:1rem;" onClick="window.location.href='/todos/{{item.id}}'" type="button" class="btn btn-success" >Düzenle</button>
           </div>
-          <hr />
+         
+        </div>
 
             {% else %}
             {% endif %}
@@ -283,16 +338,22 @@ document.getElementById("clicks3").innerHTML = clicks3;
         left: 70%;
       "
     >
-      <div class="col">
-        <div class="list-group">
-                  {% if todos1 %}
+      <div class="col" style="height:100%;">
+        <div class="list-group" style="height:100%;" id="3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            {% if todos1 %}
           
             {% for item in todos1 %}
             
             {% if item.TodosJob == Joblist1 and item.todoDurum == "Bitti" %}
             
-                      <div
+            <div  id="{{item.id}}"
+            ondragstart="drag(event)"
+            draggable="true"
+            style="margin-bottom: 1.8rem;"
+            >
+            <div
             class="container-fluid"
+            
             style="
               background-color: rgba(86,28,89, 0.8);
               width: 100%;
@@ -307,7 +368,6 @@ document.getElementById("clicks3").innerHTML = clicks3;
               box-sizing:border-box;
             "
             
-            draggable="true"
           >
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoTarih}}</h5>
           <h5 style="margin-bottom:1rem;color:white;">{{item.todoYapilacakIs}}</h5>
@@ -316,7 +376,8 @@ document.getElementById("clicks3").innerHTML = clicks3;
           <button style="margin-bottom:1rem;" onClick="window.location.href='/todoGoruntule/{{item.id}}'" type="button" class="btn btn-info" >Görüntüle</button>
           <button style="margin-bottom:1rem;" onClick="window.location.href='/todos/{{item.id}}'" type="button" class="btn btn-success" >Düzenle</button>
           </div>
-          <hr />
+         
+        </div>
 
             {% else %}
             {% endif %}
