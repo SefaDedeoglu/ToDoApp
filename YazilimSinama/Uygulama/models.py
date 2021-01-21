@@ -23,7 +23,7 @@ class Todos(models.Model):
 
     def __str__(self):
         
-        return "id: {} || Tarih {}".format(self.id,self.todoTarih)
+        return "id: {} || bağlı olunan iş : // {} // ".format(self.id,self.TodosJob)
 
         
 

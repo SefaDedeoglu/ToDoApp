@@ -30,6 +30,7 @@ function drop(ev) {
   if(targetId!=4){
   ev.target.appendChild(document.getElementById(data));
   }
+  console.log("/dragdrop/"+targetId+"/"+data)
   window.location.href = "/dragdrop/"+targetId+"/"+data;
   }
 }
@@ -99,6 +100,7 @@ document.getElementById("clicks3").innerHTML = clicks3;
         border-radius: 5px; // İnternet Explorer için ovalleştirme
       }
     </style>
+    <title>ToDoApp</title>
   </head>
   <body
   onload="load()"
@@ -117,8 +119,8 @@ document.getElementById("clicks3").innerHTML = clicks3;
     width: 80px;
     height:100px;
     left: 0;
-    display:flex;
-    justify-content:space-around;
+    
+    align-items: center;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
@@ -129,7 +131,7 @@ document.getElementById("clicks3").innerHTML = clicks3;
 >
 <h5>SİL</h5>
 </div>
-  <button type="button" onClick="window.location.href='/'" class="btn btn-danger" data-bs-toggle="button" autocomplete="off">Ana Sayfa</button>
+  <button type="button" onClick="window.location.href='/'" class="btn btn-danger" data-bs-toggle="button" id="mainmenubutton" autocomplete="off">Ana Sayfa</button>
     <div style="position: absolute; top: 10px; left: 5%;">
       <button type="button" class="btn btn-primary" style="opacity: 1;" disabled>
         Yapılacaklar <span id="clicks1" class="badge badge-light">0</span>

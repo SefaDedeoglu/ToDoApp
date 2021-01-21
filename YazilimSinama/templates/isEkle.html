@@ -16,7 +16,7 @@
       crossorigin="anonymous"
     />
 
-    <title>Hello, world!</title>
+    <title>Task Manager</title>
     <script type="text/javascript">
     var sayac=0;
     
@@ -26,6 +26,7 @@
     a.insertAdjacentHTML("afterend",'<div  style="display:flex;justify-content:space-between"> <input type="date" class="form-control" aria-label="Small" placeholder="Tarih" aria-describedby="inputGroup-sizing-sm" name = "t'+sayac+'" /> <select class="form-control" aria-describedby="inputGroup-sizing-sm" name = "d'+sayac+'"><option selected>Eklendi</option><option>Yapım Aşamasında</option><option>Bitti</option></select> <input type="text" class="form-control" aria-label="Small" placeholder="Yapılacak iş" aria-describedby="inputGroup-sizing-sm" name = "y'+sayac+'" /> <input type="text" class="form-control" aria-label="Small" placeholder="Açıklama" aria-describedby="inputGroup-sizing-sm" name = "a'+sayac+'" /></div>');
      document.getElementById("sayac").innerHTML=sayac;
       
+    
     console.log(sayac);
 
 
@@ -82,6 +83,7 @@
               >
             </div>
             <input
+              id="tarihid"
               type="date"
               class="form-control"
               aria-label="Small"
@@ -163,6 +165,7 @@
               >
             </div>
             <input
+              id="tahminisureid"
               type="text"
               class="form-control"
               aria-label="Small"
