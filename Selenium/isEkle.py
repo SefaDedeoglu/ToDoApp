@@ -33,7 +33,7 @@ while True:
     time.sleep(1)
     kartno.send_keys(text)
     time.sleep(1)
-    projeNo.send_keys(text)
+    projeNo.send_keys("test"+str(k))
     time.sleep(1)
     teknikuzman.send_keys(text)
     time.sleep(1)

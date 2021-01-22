@@ -25,6 +25,7 @@
     var a = document.getElementById("k1");
     a.insertAdjacentHTML("afterend",'<div  style="display:flex;justify-content:space-between"> <input type="date" class="form-control" aria-label="Small" placeholder="Tarih" aria-describedby="inputGroup-sizing-sm" name = "t'+sayac+'" /> <select class="form-control" aria-describedby="inputGroup-sizing-sm" name = "d'+sayac+'"><option selected>Eklendi</option><option>Yapım Aşamasında</option><option>Bitti</option></select> <input type="text" class="form-control" aria-label="Small" placeholder="Yapılacak iş" aria-describedby="inputGroup-sizing-sm" name = "y'+sayac+'" /> <input type="text" class="form-control" aria-label="Small" placeholder="Açıklama" aria-describedby="inputGroup-sizing-sm" name = "a'+sayac+'" /></div>');
      document.getElementById("sayac").innerHTML=sayac;
+     document.getElementById("tahminisureid").value=sayac;
       
     
     console.log(sayac);
